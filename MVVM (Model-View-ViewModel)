@@ -1,0 +1,55 @@
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+// Модель (Model)
+class Model {
+private:
+    string data; // Дані
+
+public:
+    // Додавання даних до моделі
+    void addData(const string& newData) {
+        data += newData + " ";
+    }
+
+    // Отримання даних
+    const string& getData() const {
+        return data;
+    }
+};
+
+// Вид (View)
+class View {
+public:
+    // Відображення даних
+    void displayData(const string& data) const {
+        cout << "Data: " << data << endl;
+    }
+};
+
+// Контролер (Controller)
+class Controller {
+private:
+    Model model;
+    View view;
+
+public:
+    // Обробка введення та взаємодія з моделлю та видом
+    void handleInput(const string& input) {
+        model.addData(input);
+        const string& data = model.getData();
+        view.displayData(data);
+    }
+};
+
+int main() {
+    Controller controller;
+
+    // Симуляція введення даних
+    controller.handleInput("Hello");
+    controller.handleInput("World");
+
+    return 0;
+}
